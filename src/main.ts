@@ -4,6 +4,9 @@ import { app, BrowserWindow } from 'electron';
 // whether you're running in development or production).
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
+// Detect current environment
+const DEV = process.env.NODE_ENV === 'development';
+
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
 	// eslint-disable-line global-require
@@ -25,7 +28,9 @@ const createWindow = (): void => {
 	mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	if (DEV) {
+		mainWindow.webContents.openDevTools();
+	}
 };
 
 // This method will be called when Electron has finished
