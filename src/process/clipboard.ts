@@ -1,35 +1,12 @@
 import { clipboard, ipcMain, IpcMainEvent } from 'electron';
 import { ClipboardItem } from '../shared/types';
 
-const sample: ClipboardItem[] = [
-	{
-		id: 1000,
-		text: 'A Sample text',
-		createdAt: Date.now(),
-	},
-	{
-		id: 1001,
-		text: 'A Sample text',
-		createdAt: Date.now(),
-	},
-	{
-		id: 1002,
-		text: 'A Sample text. A Sample text. A Sample text. A Sample text. A Sample text. A Sample text. A Sample text. A Sample text. A Sample text. ',
-		createdAt: Date.now(),
-	},
-	{
-		id: 1003,
-		text: 'A Sample text',
-		createdAt: Date.now(),
-	},
-];
-
 export class Clipboard {
 	private history: ClipboardItem[];
 	private count: number;
 
 	public constructor() {
-		this.history = sample;
+		this.history = [];
 		this.count = 0;
 	}
 	public static init = () => {
@@ -43,13 +20,13 @@ export class Clipboard {
 	};
 
 	private clipboardHandler = (event: IpcMainEvent) => {
-		const clipboardText = clipboard.readText().trim();
+		const clipboardText = clipboard.readText();
 		const lastItemText = this.history[this.history.length - 1]?.text ?? '';
 
 		if (lastItemText !== clipboardText && Boolean(clipboardText)) {
 			const newItem: ClipboardItem = {
 				id: this.count++,
-				text: clipboardText.trim(),
+				text: clipboardText,
 				createdAt: Date.now(),
 			};
 
