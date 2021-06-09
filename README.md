@@ -11,7 +11,8 @@ This is a desktop app made in electron to track and manage your clipboard histor
 
 #### ToDo's
 
--   [] add webpack copy assets plugin
+-   [] add app icon
+-   [] focus on open/close
 -   [] clear history
 -   [] delete from history
 -   [] show length

@@ -1,8 +1,8 @@
 {
 	"name": "cliptale",
-	"productName": "cliptale",
-	"version": "1.0.0",
-	"description": "ClipTale - Clip History Tracker",
+	"productName": "ClipTale",
+	"version": "1.4.1",
+	"description": "ClipTale - Clipboard History Tracker",
 	"keywords": [
 		"clipboard",
 		"clip",
@@ -19,7 +19,7 @@
 	"scripts": {
 		"start": "NODE_ENV=development electron-forge start",
 		"package": "electron-forge package",
-		"make": "electron-forge make",
+		"make": "electron-forge make --targets @electron-forge/maker-deb",
 		"publish": "electron-forge publish"
 	},
 	"dependencies": {
@@ -62,7 +62,10 @@
 	},
 	"config": {
 		"forge": {
-			"packagerConfig": {},
+			"packagerConfig": {
+				"icon": "./assets/clipboard",
+				"executableName": "cliptale"
+			},
 			"makers": [
 				{
 					"name": "@electron-forge/maker-squirrel",
