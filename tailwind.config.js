@@ -7,6 +7,7 @@ module.exports = {
 	},
 	variants: {
 		extend: {},
+		scrollbar: ['rounded'],
 	},
-	plugins: [],
+	plugins: [require('@tailwindcss/line-clamp'), require('tailwind-scrollbar')],
 };

@@ -16,6 +16,7 @@ export const config = {
 		rounded: true,
 		hideMenu: true,
 	},
+	openDevtoolsOnInitial: false,
 	appIcon: path.join(app.getAppPath(), '/src/assets/clipboard@8x.png'),
 	trayIcon: path.join(app.getAppPath(), '/src/assets/clipboard@1x.png'),
 };

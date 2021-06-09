@@ -5,3 +5,7 @@
 body {
 	@apply font-serif antialiased bg-gray-100 select-none;
 }
+
+pre {
+	white-space: pre-wrap;
+}
