@@ -1,4 +1,4 @@
-import { app } from 'electron';
+import { nativeImage } from 'electron';
 import path from 'path';
 
 export const config = {
@@ -17,8 +17,8 @@ export const config = {
 		hideMenu: true,
 	},
 	openDevtoolsOnInitial: false,
-	appIcon: path.join(app.getAppPath(), '/src/assets/clipboard@8x.png'),
-	trayIcon: path.join(app.getAppPath(), '/src/assets/clipboard@1x.png'),
+	appIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@8x.png')),
+	trayIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@1x.png')),
 };
 
 export type Config = typeof config;

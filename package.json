@@ -44,6 +44,7 @@
 		"@typescript-eslint/eslint-plugin": "^4.0.1",
 		"@typescript-eslint/parser": "^4.0.1",
 		"autoprefixer": "^10.2.6",
+		"copy-webpack-plugin": "^9.0.0",
 		"css-loader": "^5.0.0",
 		"electron": "13.1.1",
 		"eslint": "^7.6.0",
