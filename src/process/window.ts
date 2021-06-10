@@ -74,6 +74,8 @@ export class MainWindow {
 				click: () => {
 					if (!this.mainWindow.isVisible()) {
 						this.mainWindow.show();
+					} else if (!this.mainWindow.isFocused()) {
+						this.mainWindow.focus();
 					} else {
 						this.mainWindow.hide();
 					}

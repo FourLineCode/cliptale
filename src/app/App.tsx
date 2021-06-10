@@ -20,7 +20,7 @@ export const App = () => {
 	};
 
 	return (
-		<main className='flex flex-col w-screen h-screen max-h-screen overflow-hidden border-2 border-green-500'>
+		<main className='flex flex-col w-screen h-screen max-h-screen overflow-hidden border-2 border-green-500 dark:bg-gray-800'>
 			<div className='p-1 font-mono font-semibold text-center text-white bg-gray-500'>
 				📋 ClipTale 📋
 			</div>
@@ -36,7 +36,7 @@ export const App = () => {
 						>
 							<CopyIcon className='w-4 h-4 text-gray-600' />
 						</button>
-						<pre className='p-2 text-sm'>{clip.text}</pre>
+						<pre className='p-2 text-sm'>{clip.text.trim()}</pre>
 						<div className='font-mono text-xs text-right text-gray-600'>
 							{formatDistanceToNow(new Date(clip.createdAt)) + ' ago'}
 						</div>
