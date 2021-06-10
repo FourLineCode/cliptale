@@ -17,6 +17,7 @@ export const config = {
 		hideMenu: true,
 	},
 	openDevtoolsOnInitial: false,
+	tickSpeed: 500,
 	appIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@8x.png')),
 	trayIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@1x.png')),
 };

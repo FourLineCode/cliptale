@@ -20,7 +20,8 @@
 		"start": "NODE_ENV=development electron-forge start",
 		"package": "electron-forge package",
 		"make": "electron-forge make --targets @electron-forge/maker-deb",
-		"publish": "electron-forge publish"
+		"publish": "electron-forge publish",
+		"ws:clean": "rm -rf out && rm -rf .webpack"
 	},
 	"dependencies": {
 		"date-fns": "^2.22.1",

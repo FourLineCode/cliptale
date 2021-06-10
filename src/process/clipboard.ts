@@ -13,6 +13,10 @@ export class Clipboard {
 		return new Clipboard();
 	};
 
+	private getHistory = () => {
+		return this.history.slice().reverse();
+	};
+
 	public listen = () => {
 		ipcMain.on('fetch', this.fetchHandler);
 
@@ -32,11 +36,11 @@ export class Clipboard {
 
 			this.history.push(newItem);
 
-			event.sender.send('history-update', this.history.slice().reverse());
+			event.sender.send('history-update', this.getHistory());
 		}
 	};
 
 	private fetchHandler = (event: IpcMainEvent) => {
-		event.sender.send('history-update', this.history.slice().reverse());
+		event.sender.send('history-update', this.getHistory());
 	};
 }
