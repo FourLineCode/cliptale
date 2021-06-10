@@ -21,6 +21,8 @@ export class Clipboard {
 		ipcMain.on('fetch', this.fetchHandler);
 
 		ipcMain.on('tick', this.clipboardHandler);
+
+		ipcMain.on('clear', this.clearHistoryHandler);
 	};
 
 	private clipboardHandler = (event: IpcMainEvent) => {
@@ -41,6 +43,12 @@ export class Clipboard {
 	};
 
 	private fetchHandler = (event: IpcMainEvent) => {
+		event.sender.send('history-update', this.getHistory());
+	};
+
+	private clearHistoryHandler = (event: IpcMainEvent) => {
+		this.history = [];
+
 		event.sender.send('history-update', this.getHistory());
 	};
 }

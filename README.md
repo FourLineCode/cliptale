@@ -12,17 +12,19 @@ This is a desktop app made in electron to track and manage your clipboard histor
 #### ToDo's
 
 -   [ ] add app icon
--   [ ] focus on open/close
--   [ ] clear history
+-   [ ] change icon color
+-   [x] focus on open/close
+-   [ ] add tooltip to buttons
+-   [x] clear history
+-   [x] search filter
 -   [ ] delete from history
 -   [ ] show length
 -   [ ] show total items
+-   [ ] arrow key navigate
 -   [ ] setting page
 -   [ ] max number of history
--   [ ] search filter
 -   [ ] show image copy history
 -   [ ] dark mode
--   [ ] arrow key navigate
 -   [ ] store history in db
 -   [ ] favourite clips
 -   [ ] build for distribute
