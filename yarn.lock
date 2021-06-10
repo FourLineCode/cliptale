@@ -391,6 +391,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@popperjs/core@^2.8.3":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.9.2.tgz#adea7b6953cbb34651766b0548468e743c6a2353"
+  integrity sha512-VZMYa7+fXHdwIq1TDhSXoVmSPEGM/aa+6Aiq3nVVJ9bXr24zScr+NlKFKC3iPljA7ho/GAZr+d2jOf5GIRC30Q==
+
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.14.0.tgz#9fb3a3cf3132328151f353de4632e01e52102bea"
@@ -419,6 +424,13 @@
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/@tailwindcss/line-clamp/-/line-clamp-0.2.1.tgz#efafe556719c26a3926f0679a98307c4bc9270d2"
   integrity sha512-Hq2KJY1+T2v7jw/mnT3mnC7CKbp5kj1XTqzSb2xbEt1j+JkxIR6N3ijsN/WevZtsKJfVE1KOejA/3IRKuhZEsQ==
+
+"@tippyjs/react@^4.2.5":
+  version "4.2.5"
+  resolved "https://registry.yarnpkg.com/@tippyjs/react/-/react-4.2.5.tgz#9b5837db93a1cac953962404df906aef1a18e80d"
+  integrity sha512-YBLgy+1zznBNbx4JOoOdFXWMLXjBh9hLPwRtq3s8RRdrez2l3tPBRt2m2909wZd9S1KUeKjOOYYsnitccI9I3A==
+  dependencies:
+    tippy.js "^6.3.1"
 
 "@types/cacheable-request@^6.0.1":
   version "6.0.1"
@@ -6707,6 +6719,13 @@ tiny-each-async@2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/tiny-each-async/-/tiny-each-async-2.0.3.tgz#8ebbbfd6d6295f1370003fbb37162afe5a0a51d1"
   integrity sha1-jru/1tYpXxNwAD+7NxYq/loKUdE=
+
+tippy.js@^6.3.1:
+  version "6.3.1"
+  resolved "https://registry.yarnpkg.com/tippy.js/-/tippy.js-6.3.1.tgz#3788a007be7015eee0fd589a66b98fb3f8f10181"
+  integrity sha512-JnFncCq+rF1dTURupoJ4yPie5Cof978inW6/4S6kmWV7LL9YOSEVMifED3KdrVPEG+Z/TFH2CDNJcQEfaeuQww==
+  dependencies:
+    "@popperjs/core" "^2.8.3"
 
 tmp-promise@^1.0.5:
   version "1.1.0"

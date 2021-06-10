@@ -14,7 +14,7 @@ This is a desktop app made in electron to track and manage your clipboard histor
 -   [ ] add app icon
 -   [ ] change icon color
 -   [x] focus on open/close
--   [ ] add tooltip to buttons
+-   [x] add tooltip to buttons
 -   [x] clear history
 -   [x] search filter
 -   [ ] delete from history

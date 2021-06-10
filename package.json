@@ -24,6 +24,7 @@
 		"ws:clean": "rm -rf out && rm -rf .webpack"
 	},
 	"dependencies": {
+		"@tippyjs/react": "^4.2.5",
 		"date-fns": "^2.22.1",
 		"electron-squirrel-startup": "^1.0.0",
 		"react": "^17.0.2",
