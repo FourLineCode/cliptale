@@ -1,9 +1,14 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
 	mode: 'jit',
 	purge: ['./src/**/*.{ts,tsx,html}'],
 	darkMode: 'class', // or 'media' or 'class'
 	theme: {
 		extend: {
+			colors: {
+				brand: colors.blue,
+			},
 			transitionProperty: {
 				width: 'width',
 			},

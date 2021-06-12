@@ -18,8 +18,8 @@ export const config = {
 	},
 	openDevtoolsOnInitial: false,
 	tickSpeed: 500,
-	appIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@8x.png')),
-	trayIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/clipboard@1x.png')),
+	appIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/icons/png/256x256.png')),
+	trayIcon: nativeImage.createFromPath(path.join(__dirname, '/assets/icons/png/32x32.png')),
 };
 
 export type Config = typeof config;

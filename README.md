@@ -11,15 +11,14 @@ This is a desktop app made in electron to track and manage your clipboard histor
 
 #### ToDo's
 
--   [ ] add app icon
--   [ ] change icon color
+-   [x] change brand color
 -   [x] focus on open/close
 -   [x] add tooltip to buttons
 -   [x] clear history
 -   [x] search filter
--   [ ] delete from history
--   [ ] show length
--   [ ] show total items
+-   [x] delete from history
+-   [x] show length
+-   [x] show total items
 -   [ ] arrow key navigate
 -   [ ] setting page
 -   [ ] max number of history
@@ -27,4 +26,5 @@ This is a desktop app made in electron to track and manage your clipboard histor
 -   [ ] dark mode
 -   [ ] store history in db
 -   [ ] favourite clips
+-   [ ] add app icon
 -   [ ] build for distribute

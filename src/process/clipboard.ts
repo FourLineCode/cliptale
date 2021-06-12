@@ -23,6 +23,8 @@ export class Clipboard {
 		ipcMain.on('tick', this.clipboardHandler);
 
 		ipcMain.on('clear', this.clearHistoryHandler);
+
+		ipcMain.on('delete', this.deleteHandler);
 	};
 
 	private clipboardHandler = (event: IpcMainEvent) => {
@@ -48,6 +50,16 @@ export class Clipboard {
 
 	private clearHistoryHandler = (event: IpcMainEvent) => {
 		this.history = [];
+
+		event.sender.send('history-update', this.getHistory());
+	};
+
+	private deleteHandler = (event: IpcMainEvent, clipId: number) => {
+		if (clipId === this.history[this.history.length - 1].id) {
+			clipboard.writeText('');
+		}
+
+		this.history = this.history.filter((clip) => clip.id !== clipId);
 
 		event.sender.send('history-update', this.getHistory());
 	};

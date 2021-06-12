@@ -65,7 +65,7 @@
 	"config": {
 		"forge": {
 			"packagerConfig": {
-				"icon": "./assets/clipboard",
+				"icon": "./assets/icons/png/1024x1024.png",
 				"executableName": "cliptale"
 			},
 			"makers": [
