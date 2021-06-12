@@ -9,6 +9,40 @@ This is a desktop app made in electron to track and manage your clipboard histor
 -   [TailwindCSS](https://tailwindcss.com/)
 -   [Typescript](http://typescriptlang.org/)
 
+### Run the app locally
+
+-   Clone the repository
+
+```
+git clone https://github.com/FourLineCode/cliptale.git
+```
+
+-   Install dependencies
+
+```
+yarn
+```
+
+-   Run the app
+
+```
+yarn start
+```
+
+##### Build executable / installable
+
+-   Executable
+
+```
+yarn package
+```
+
+-   Installable
+
+```
+yarn make
+```
+
 #### ToDo's
 
 -   [x] change brand color
