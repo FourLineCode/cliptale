@@ -63,7 +63,8 @@ yarn make
         -   [x] esc to blur search
     -   [x] scroll to selected item
     -   [ ] ctrl+z undo maybe???
--   [ ] redesign
+-   [x] material redesign
+-   [ ] show all keybinds
 -   [ ] setting page
 -   [ ] max number of history
 -   [ ] show image copy history

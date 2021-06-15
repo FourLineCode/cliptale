@@ -8,6 +8,7 @@ module.exports = {
 		extend: {
 			colors: {
 				brand: colors.blue,
+				gray: colors.trueGray,
 			},
 			transitionProperty: {
 				width: 'width',
