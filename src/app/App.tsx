@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import { clipboard, ipcRenderer } from 'electron';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { useClipboardHistory } from './hooks/useClipboardHistory';
 import { CogIcon } from './ui/CogIcon';
@@ -16,6 +16,8 @@ export const App = () => {
 	const [searchinput, setSearchInput] = useState('');
 	const [filteredHistory, setFilteredHistory] = useState(history);
 	const [selected, setSelected] = useState(0);
+	const elementRef = useRef<Record<number, HTMLDivElement>>({});
+	const searchBarRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
 		if (!searchinput) return setFilteredHistory(history);
@@ -80,6 +82,7 @@ export const App = () => {
 				ArrowDown = 'ArrowDown',
 				Control = 'Control',
 				C = 'c',
+				K = 'k',
 				Enter = 'Enter',
 				Backspace = 'Backspace',
 				Delete = 'Delete',
@@ -97,6 +100,9 @@ export const App = () => {
 				const key = event.key;
 				if (key === ValidKeys.Escape) {
 					setSelected(0);
+					if (searchBarRef.current === document.activeElement) {
+						searchBarRef.current?.blur();
+					}
 				} else if (key === ValidKeys.ArrowUp) {
 					setSelected((pre) => Math.max(1, pre - 1));
 				} else if (key === ValidKeys.ArrowDown) {
@@ -119,6 +125,10 @@ export const App = () => {
 					} else {
 						setSelected(0);
 					}
+				} else if (key === ValidKeys.K && event.ctrlKey) {
+					if (searchBarRef.current) {
+						searchBarRef.current.focus();
+					}
 				}
 			}
 		};
@@ -130,6 +140,16 @@ export const App = () => {
 		};
 	}, [filteredHistory, selected]);
 
+	useEffect(() => {
+		if (selected) {
+			elementRef.current[selected].scrollIntoView({
+				behavior: 'smooth',
+				block: 'center',
+				inline: 'center',
+			});
+		}
+	}, [selected]);
+
 	return (
 		<main className='flex flex-col w-screen h-screen max-h-screen overflow-hidden dark:bg-gray-800'>
 			<div className='p-1 font-mono font-semibold text-center bg-gray-600 shadow-lg text-brand-400'>
@@ -139,6 +159,7 @@ export const App = () => {
 			<div className='flex items-center justify-between px-4 pt-4'>
 				<div className='flex items-center space-x-0.5 relative'>
 					<input
+						ref={searchBarRef}
 						type='text'
 						placeholder='Search...'
 						className='w-40 transition-width ring-1 ring-brand-500 focus:ring-2 focus:ring-brand-500 rounded-md py-0.5 px-6 focus:outline-none focus:w-56'
@@ -187,6 +208,9 @@ export const App = () => {
 							selected === idx + 1 && 'ring-2 ring-brand-500',
 							'relative w-full p-1 border border-gray-400 rounded-md shadow-md bg-gradient-to-t from-gray-300 hover:to-gray-200 to-gray-100'
 						)}
+						ref={(el) => {
+							if (el) elementRef.current[idx + 1] = el;
+						}}
 					>
 						<Tooltip text='Delete'>
 							<button

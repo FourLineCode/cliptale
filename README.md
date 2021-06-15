@@ -55,12 +55,15 @@ yarn make
 -   [x] show total items
 -   [x] arrow key navigate
     -   [x] up/down = navigate
-    -   [x] esc = unselect
+        -   [x] esc = unselect
     -   [x] ctrl+c / enter = copy
     -   [x] delete / backspace = remove
     -   [x] alt+`num` = focus num indexed
-    -   [ ] scroll to selected item
+    -   [x] ctrl+k = focus search
+        -   [x] esc to blur search
+    -   [x] scroll to selected item
     -   [ ] ctrl+z undo maybe???
+-   [ ] redesign
 -   [ ] setting page
 -   [ ] max number of history
 -   [ ] show image copy history
