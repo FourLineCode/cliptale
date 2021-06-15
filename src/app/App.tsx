@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { formatDistanceToNow } from 'date-fns';
 import { clipboard, ipcRenderer } from 'electron';
 import React, { useEffect, useState } from 'react';
@@ -14,6 +15,7 @@ export const App = () => {
 	const history = useClipboardHistory();
 	const [searchinput, setSearchInput] = useState('');
 	const [filteredHistory, setFilteredHistory] = useState(history);
+	const [selected, setSelected] = useState(0);
 
 	useEffect(() => {
 		if (!searchinput) return setFilteredHistory(history);
@@ -23,10 +25,6 @@ export const App = () => {
 		);
 		return setFilteredHistory(filtered);
 	}, [searchinput, history]);
-
-	useEffect(() => {
-		console.log(history);
-	}, [history]);
 
 	const copyHandler = (text: string) => {
 		clipboard.writeText(text);
@@ -74,6 +72,63 @@ export const App = () => {
 				'bg-gradient-to-t from-gray-400 text-red-500 font-semibold to-gray-300 shadow-lg p-1 font-mono text-xs',
 		});
 	};
+
+	useEffect(() => {
+		const onKeyDown = (event: KeyboardEvent) => {
+			enum ValidKeys {
+				ArrowUp = 'ArrowUp',
+				ArrowDown = 'ArrowDown',
+				Control = 'Control',
+				C = 'c',
+				Enter = 'Enter',
+				Backspace = 'Backspace',
+				Delete = 'Delete',
+				Alt = 'Alt',
+				Escape = 'Escape',
+			}
+
+			const isValidKey = (key: string) => {
+				const isKey = (Object as any).values(ValidKeys).includes(key);
+				const isDigit = !isNaN(parseInt(event.key));
+				return isKey || isDigit;
+			};
+
+			if (isValidKey(event.key)) {
+				const key = event.key;
+				if (key === ValidKeys.Escape) {
+					setSelected(0);
+				} else if (key === ValidKeys.ArrowUp) {
+					setSelected((pre) => Math.max(1, pre - 1));
+				} else if (key === ValidKeys.ArrowDown) {
+					setSelected((pre) => Math.min(filteredHistory.length, pre + 1));
+				} else if (key === ValidKeys.Enter || (key === ValidKeys.C && event.ctrlKey)) {
+					if (selected === 0) return;
+
+					copyHandler(filteredHistory[selected - 1].text);
+					setSelected(0);
+				} else if (key === ValidKeys.Delete || key === ValidKeys.Backspace) {
+					if (selected === 0) return;
+
+					deleteHandler(filteredHistory[selected - 1].id);
+					setSelected(0);
+				} else if (!isNaN(parseInt(key)) && event.altKey) {
+					const index = parseInt(key);
+
+					if (index > 0 && index <= filteredHistory.length) {
+						setSelected(index);
+					} else {
+						setSelected(0);
+					}
+				}
+			}
+		};
+
+		window.addEventListener('keydown', onKeyDown);
+
+		return () => {
+			window.removeEventListener('keydown', onKeyDown);
+		};
+	}, [filteredHistory, selected]);
 
 	return (
 		<main className='flex flex-col w-screen h-screen max-h-screen overflow-hidden dark:bg-gray-800'>
@@ -125,10 +180,13 @@ export const App = () => {
 			</div>
 
 			<div className='p-4 space-y-3 overflow-y-auto scrollbar-thumb-rounded scrollbar-thin scrollbar-track-transparent scrollbar-thumb-gray-400 hover:scrollbar-thumb-gray-500'>
-				{filteredHistory.map((clip) => (
+				{filteredHistory.map((clip, idx) => (
 					<div
 						key={clip.id}
-						className='relative w-full p-1 border border-gray-400 rounded-md shadow-md bg-gradient-to-t from-gray-300 hover:to-gray-200 to-gray-100 '
+						className={clsx(
+							selected === idx + 1 && 'ring-2 ring-brand-500',
+							'relative w-full p-1 border border-gray-400 rounded-md shadow-md bg-gradient-to-t from-gray-300 hover:to-gray-200 to-gray-100'
+						)}
 					>
 						<Tooltip text='Delete'>
 							<button

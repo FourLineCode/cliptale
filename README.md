@@ -53,7 +53,14 @@ yarn make
 -   [x] delete from history
 -   [x] show length
 -   [x] show total items
--   [ ] arrow key navigate
+-   [x] arrow key navigate
+    -   [x] up/down = navigate
+    -   [x] esc = unselect
+    -   [x] ctrl+c / enter = copy
+    -   [x] delete / backspace = remove
+    -   [x] alt+`num` = focus num indexed
+    -   [ ] scroll to selected item
+    -   [ ] ctrl+z undo maybe???
 -   [ ] setting page
 -   [ ] max number of history
 -   [ ] show image copy history
