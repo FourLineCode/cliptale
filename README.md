@@ -62,8 +62,9 @@ yarn make
     -   [x] ctrl+k = focus search
         -   [x] esc to blur search
     -   [x] scroll to selected item
-    -   [ ] ctrl+z undo maybe???
+    -   [ ] ctrl+z undo delete maybe???
 -   [x] material redesign
+-   [ ] show appname in context menu
 -   [ ] show all keybinds
 -   [ ] setting page
 -   [ ] max number of history
