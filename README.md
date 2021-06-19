@@ -67,6 +67,7 @@ yarn make
 -   [ ] show appname in context menu
 -   [ ] show all keybinds
 -   [ ] setting page
+-   [ ] start on startup
 -   [ ] max number of history
 -   [ ] show image copy history
 -   [ ] dark mode
