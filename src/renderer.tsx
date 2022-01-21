@@ -26,9 +26,9 @@
  * ```
  */
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { App } from './app/App';
-import './public/tailwind.css';
+import React from "react";
+import ReactDOM from "react-dom";
+import { App } from "./app/App";
+import "./public/tailwind.css";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));

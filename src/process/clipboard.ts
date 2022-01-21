@@ -1,66 +1,66 @@
-import { clipboard, ipcMain, IpcMainEvent } from 'electron';
-import { ClipboardItem } from '../shared/types';
+import { clipboard, ipcMain, IpcMainEvent } from "electron";
+import { ClipboardItem } from "../shared/types";
 
 export class Clipboard {
-	private history: ClipboardItem[];
-	private count: number;
+    private history: ClipboardItem[];
+    private count: number;
 
-	public constructor() {
-		this.history = [];
-		this.count = 0;
-	}
-	public static init = () => {
-		return new Clipboard();
-	};
+    public constructor() {
+        this.history = [];
+        this.count = 0;
+    }
+    public static init = () => {
+        return new Clipboard();
+    };
 
-	private getHistory = () => {
-		return this.history.slice().reverse();
-	};
+    private getHistory = () => {
+        return this.history.slice().reverse();
+    };
 
-	public listen = () => {
-		ipcMain.on('fetch', this.fetchHandler);
+    public listen = () => {
+        ipcMain.on("fetch", this.fetchHandler);
 
-		ipcMain.on('tick', this.clipboardHandler);
+        ipcMain.on("tick", this.clipboardHandler);
 
-		ipcMain.on('clear', this.clearHistoryHandler);
+        ipcMain.on("clear", this.clearHistoryHandler);
 
-		ipcMain.on('delete', this.deleteHandler);
-	};
+        ipcMain.on("delete", this.deleteHandler);
+    };
 
-	private clipboardHandler = (event: IpcMainEvent) => {
-		const clipboardText = clipboard.readText();
-		const lastItemText = this.history[this.history.length - 1]?.text ?? '';
+    private clipboardHandler = (event: IpcMainEvent) => {
+        const clipboardText = clipboard.readText();
+        const lastItemText = this.history[this.history.length - 1]?.text ?? "";
 
-		if (lastItemText !== clipboardText && Boolean(clipboardText)) {
-			const newItem: ClipboardItem = {
-				id: this.count++,
-				text: clipboardText,
-				createdAt: Date.now(),
-			};
+        if (lastItemText !== clipboardText && Boolean(clipboardText)) {
+            const newItem: ClipboardItem = {
+                id: this.count++,
+                text: clipboardText,
+                createdAt: Date.now(),
+            };
 
-			this.history.push(newItem);
+            this.history.push(newItem);
 
-			event.sender.send('history-update', this.getHistory());
-		}
-	};
+            event.sender.send("history-update", this.getHistory());
+        }
+    };
 
-	private fetchHandler = (event: IpcMainEvent) => {
-		event.sender.send('history-update', this.getHistory());
-	};
+    private fetchHandler = (event: IpcMainEvent) => {
+        event.sender.send("history-update", this.getHistory());
+    };
 
-	private clearHistoryHandler = (event: IpcMainEvent) => {
-		this.history = [];
+    private clearHistoryHandler = (event: IpcMainEvent) => {
+        this.history = [];
 
-		event.sender.send('history-update', this.getHistory());
-	};
+        event.sender.send("history-update", this.getHistory());
+    };
 
-	private deleteHandler = (event: IpcMainEvent, clipId: number) => {
-		if (clipId === this.history[this.history.length - 1].id) {
-			clipboard.writeText('');
-		}
+    private deleteHandler = (event: IpcMainEvent, clipId: number) => {
+        if (clipId === this.history[this.history.length - 1].id) {
+            clipboard.writeText("");
+        }
 
-		this.history = this.history.filter((clip) => clip.id !== clipId);
+        this.history = this.history.filter((clip) => clip.id !== clipId);
 
-		event.sender.send('history-update', this.getHistory());
-	};
+        event.sender.send("history-update", this.getHistory());
+    };
 }

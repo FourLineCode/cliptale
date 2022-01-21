@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 body {
-	@apply font-serif antialiased bg-gray-700 select-none;
+    @apply font-serif antialiased bg-gray-700 select-none;
 }
 
 pre {
-	white-space: pre-wrap;
+    white-space: pre-wrap;
 }
